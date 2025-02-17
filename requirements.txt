@@ -1,0 +1,9 @@
+python-dotenv==1.0.0
+moviepy==1.0.3
+pydub==0.25.1
+openai==1.12.0
+langchain==0.1.0
+webrtcvad==2.0.10
+deepseek-api==1.0.0
+google-generativeai==0.3.0
+langchain-google-genai==0.0.5
