@@ -21,7 +21,6 @@ Video Processor es una aplicación Python que procesa automáticamente archivos 
 
 1. Clona el repositorio:
 ```bash
-# MODIFICAR: Reemplaza con tu URL de GitHub
 git clone https://github.com/jerkey06/video-processor.git
 cd video-processor
 ```
