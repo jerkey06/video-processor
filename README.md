@@ -107,7 +107,11 @@ python src/main.py
 
 ## ⚠️ Solución de Problemas
 
-[Sección anterior de FFmpeg y Problemas de Memoria permanece igual...]
+### FFmpeg no encontrado
+- Asegúrate de que FFmpeg esté instalado y accesible en el PATH del sistema
+- Windows: Descarga e instala desde ffmpeg.org
+- macOS: `brew install ffmpeg`
+- Linux: `sudo apt-get install ffmpeg`
 
 ### Errores de API OpenAI
 - "Insufficient quota": Verifica tus límites de uso y estado de facturación
