@@ -15,7 +15,30 @@ Video Processor es una aplicación Python que procesa automáticamente archivos 
 - Edición y compilación automática de video
 - Soporte para múltiples formatos (.mp4, .mov, .avi, .mkv)
 
-[Secciones de Estructura del Proyecto y Prerrequisitos permanecen igual...]
+## 📁 Estructura del Proyecto
+```
+video_processor/
+├── requirements.txt      # Dependencias del proyecto
+├── .env                 # Variables de entorno
+├── README.md           # Documentación
+├── src/                # Código fuente
+│   ├── main.py        # Punto de entrada
+│   ├── config.py      # Configuración
+│   ├── services/      # Servicios principales
+│   │   ├── audio_service.py        # Procesamiento de audio
+│   │   ├── transcription_service.py # Transcripción
+│   │   ├── llm_service.py          # Filtrado AI
+│   │   └── video_service.py        # Edición de video
+│   └── utils/         # Funciones auxiliares
+│       └── file_utils.py
+├── raw/               # Videos de entrada
+└── edited/            # Videos procesados
+```
+
+## 📋 Prerrequisitos
+- Python 3.8 o superior
+- FFmpeg instalado en el sistema
+- API key de OpenAI, DeepSeek o Gemmini
 
 ## 🛠️ Instalación
 
