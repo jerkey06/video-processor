@@ -1,179 +1,216 @@
 # Video Processor
 
-Video Processor es una aplicación Python que procesa automáticamente archivos de video para crear versiones editadas concisas eliminando contenido redundante. Utiliza detección de voz, transcripción y AI para identificar y remover segmentos duplicados mientras mantiene el contenido principal del video.
+The Video Processor is a Python-based application designed for the automated analysis and concise editing of video files. It leverages advanced speech detection, transcription, and artificial intelligence to identify and eliminate redundant content, thereby preserving the core informational value of the video.
 
-## 🚀 Características
-- Detección automática de voz en videos
-- Transcripción de audio usando múltiples proveedores de AI:
-  - OpenAI (Whisper)
-  - DeepSeek Audio
-  - Google Gemini Pro
-- Filtrado inteligente de contenido usando:
-  - GPT-4
-  - DeepSeek Chat
-  - Gemini Pro
-- Edición y compilación automática de video
-- Soporte para múltiples formatos (.mp4, .mov, .avi, .mkv)
+## Features
 
-## 📁 Estructura del Proyecto
+- **Automated Speech Detection:** Identifies spoken content within video files.
+- **Multi-Provider Audio Transcription:** Supports transcription services from leading AI providers:
+    - OpenAI (Whisper)
+    - DeepSeek Audio
+    - Google Gemini Pro
+- **Intelligent Content Filtering:** Employs sophisticated AI models for content refinement:
+    - GPT-4
+    - DeepSeek Chat
+    - Gemini Pro
+- **Automated Video Editing and Compilation:** Streamlines the process of video segment selection and assembly.
+- **Broad Format Compatibility:** Supports common video formats including `.mp4`, `.mov`, `.avi`, and `.mkv`.
+
+## Project Structure
+
 ```
 video_processor/
-├── requirements.txt      # Dependencias del proyecto
-├── .env                 # Variables de entorno
-├── README.md           # Documentación
-├── src/                # Código fuente
-│   ├── main.py        # Punto de entrada
-│   ├── config.py      # Configuración
-│   ├── services/      # Servicios principales
-│   │   ├── audio_service.py        # Procesamiento de audio
-│   │   ├── transcription_service.py # Transcripción
-│   │   ├── llm_service.py          # Filtrado AI
-│   │   └── video_service.py        # Edición de video
-│   └── utils/         # Funciones auxiliares
+├── requirements.txt         # Project dependencies
+├── .env                     # Environment variables
+├── README.md                # Project documentation
+├── src/                     # Source code directory
+│   ├── main.py              # Application entry point
+│   ├── config.py            # Configuration settings
+│   ├── services/            # Core service modules
+│   │   ├── audio_service.py         # Audio processing functionalities
+│   │   ├── transcription_service.py # Audio transcription services
+│   │   ├── llm_service.py           # AI-driven content filtering
+│   │   └── video_service.py         # Video editing and manipulation
+│   └── utils/               # Utility functions
 │       └── file_utils.py
-├── raw/               # Videos de entrada
-└── edited/            # Videos procesados
+├── raw/                     # Directory for input video files
+└── edited/                  # Directory for processed video outputs
 ```
 
-## 📋 Prerrequisitos
-- Python 3.8 o superior
-- FFmpeg instalado en el sistema
-- API key de OpenAI, DeepSeek o Gemmini
+## Prerequisites
 
-## 🛠️ Instalación
+- Python 3.8 or higher
+- FFmpeg installed and accessible in the system's PATH
+- Valid API key for OpenAI, DeepSeek, or Google Gemini
 
-1. Clona el repositorio:
-```bash
+## Installation
+
+1. Clone the repository:
+
+Bash
+
+```
 git clone https://github.com/jerkey06/video-processor.git
 cd video-processor
 ```
 
-2. Crea y activa un entorno virtual:
-```bash
+2. Create and activate a virtual environment:
+
+Bash
+
+```
 python -m venv venv
 
-# En Windows:
+# On Windows:
 venv\Scripts\activate
 
-# En macOS/Linux:
+# On macOS/Linux:
 source venv/bin/activate
 ```
 
-3. Instala las dependencias:
-```bash
+3. Install project dependencies:
+
+Bash
+
+```
 pip install -r requirements.txt
 ```
 
-4. Configuración de API:
+4. API Configuration:
 
-### Opción 1: OpenAI API
-1. Ve a [OpenAI's platform](https://platform.openai.com/account/api-keys)
-2. Regístrate o inicia sesión
-3. Ve a "API Keys" en la barra lateral
-4. Haz clic en "Create new secret key"
-5. Copia la clave generada
+### Option 1: OpenAI API
 
-### Opción 2: DeepSeek API
-1. Ve a [DeepSeek's platform](https://platform.deepseek.com/)
-2. Crea una cuenta e inicia sesión
-3. Ve a la sección "API Keys"
-4. Genera una nueva API key
+1. Navigate to [OpenAI's platform](https://platform.openai.com/account/api-keys)
+2. Register or log in
+3. Access "API Keys" from the sidebar
+4. Click "Create new secret key"
+5. Copy the generated key
 
-### Opción 3: Google Gemini API
-1. Ve a [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Inicia sesión con tu cuenta de Google
-3. Haz clic en "Get API key"
-4. Crea una nueva API key o usa una existente
+### Option 2: DeepSeek API
 
-5. Crea un archivo `.env` en la raíz del proyecto y añade las keys que vayas a usar:
+1. Navigate to [DeepSeek's platform](https://platform.deepseek.com/)
+2. Create an account and log in
+3. Go to the "API Keys" section
+4. Generate a new API key
+
+### Option 3: Google Gemini API
+
+1. Navigate to [Google AI Studio](https://makersuite.google.com/app/apikey)
+    
+2. Log in with your Google account
+    
+3. Click "Get API key"
+    
+4. Create a new API key or utilize an existing one
+    
+5. Create a `.env` file in the project root directory and populate it with the required API keys:
+    
+
 ```
-OPENAI_API_KEY=tu_api_key_aquí
-DEEPSEEK_API_KEY=tu_api_key_aquí
-GEMINI_API_KEY=tu_api_key_aquí
+OPENAI_API_KEY=your_api_key_here
+DEEPSEEK_API_KEY=your_api_key_here
+GEMINI_API_KEY=your_api_key_here
 ```
 
-## 💻 Uso
+## Usage
 
-1. Configura el proveedor de AI que deseas usar en `src/config.py`:
-```python
+1. Configure the desired AI provider in `src/config.py`:
+
+Python
+
+```
 class Config:
-    AI_PROVIDER = "openai"  # Opciones: "openai", "deepseek", "gemini"
+    AI_PROVIDER = "openai"  # Options: "openai", "deepseek", "gemini"
 ```
 
-2. Coloca tus archivos de video en el directorio `raw/`
+2. Place your video files into the `raw/` directory.
+    
+3. Execute the video processor:
+    
 
-3. Ejecuta el procesador:
-```bash
+Bash
+
+```
 python src/main.py
 ```
 
-4. Encuentra los videos procesados en el directorio `edited/`
+4. Retrieve the processed video files from the `edited/` directory.
 
-## 💰 Comparación de Precios de API
+## API Pricing Comparison
 
 ### OpenAI
-- Whisper API: $0.006 / minuto
-- GPT-4: Desde $0.03 / 1K tokens
+
+- Whisper API: $0.006 per minute
+- GPT-4: Starting from $0.03 per 1K tokens
 
 ### DeepSeek
-- Transcripción de Audio: $0.004 / minuto
-- Modelo de Chat: Desde $0.001 / 1K tokens
+
+- Audio Transcription: $0.004 per minute
+- Chat Model: Starting from $0.001 per 1K tokens
 
 ### Google Gemini
-- Gemini Pro: $0.00025 / 1K tokens (¡Gratis hasta cierto uso!)
-- Audio Processing: Incluido en el precio base
 
-*Nota: Los precios pueden variar. Consulta las páginas oficiales para las tarifas actuales:*
+- Gemini Pro: $0.00025 per 1K tokens (Free up to a certain usage threshold!)
+- Audio Processing: Included in the base price
+
+_Note: Pricing is subject to change. Refer to the official provider websites for current rates:_
+
 - [OpenAI Pricing](https://openai.com/pricing)
 - [DeepSeek Pricing](https://platform.deepseek.com/pricing)
 - [Google AI Pricing](https://ai.google.dev/pricing)
 
-## ⚠️ Solución de Problemas
+## Troubleshooting
 
-### FFmpeg no encontrado
-- Asegúrate de que FFmpeg esté instalado y accesible en el PATH del sistema
-- Windows: Descarga e instala desde ffmpeg.org
+### FFmpeg Not Found
+
+- Ensure FFmpeg is installed and its executable path is included in the system's PATH environment variable.
+- Windows: Download and install from ffmpeg.org
 - macOS: `brew install ffmpeg`
 - Linux: `sudo apt-get install ffmpeg`
 
-### Errores de API OpenAI
-- "Insufficient quota": Verifica tus límites de uso y estado de facturación
-- "Rate limit reached": Espera unos minutos o aumenta tus límites
-- "Invalid API key": Revisa tu API key en el archivo .env
+### OpenAI API Errors
 
-### Errores de API DeepSeek
-- "Authentication failed": Verifica que tu API key esté correctamente copiada
-- "Quota exceeded": Revisa tu saldo en DeepSeek
-- "Model not available": Asegúrate de usar los nombres correctos de modelos
+- "Insufficient quota": Verify your usage limits and billing status.
+- "Rate limit reached": Await a few minutes or request an increase in your rate limits.
+- "Invalid API key": Reconfirm the accuracy of your API key in the `.env` file.
 
-### Errores de API Gemini
-- "API key not valid": Verifica que tu API key de Google esté activa
-- "Quota exceeded": Revisa tus límites de uso gratuito
-- "Region not supported": Asegúrate que el servicio esté disponible en tu región
+### DeepSeek API Errors
 
-### Problemas de Memoria
-- Intenta procesar segmentos de video más cortos
-- Asegura suficiente memoria del sistema
-- Cierra otras aplicaciones que consuman mucha memoria
+- "Authentication failed": Verify that your API key is correctly copied.
+- "Quota exceeded": Review your DeepSeek account balance.
+- "Model not available": Ensure the correct model names are being used.
 
-## 🤝 Contribuir
+### Gemini API Errors
 
-Para contribuir al proyecto:
+- "API key not valid": Confirm that your Google API key is active.
+- "Quota exceeded": Review your free usage limits.
+- "Region not supported": Verify service availability in your geographical region.
 
-1. Haz fork del repositorio
-2. Crea una rama para tu feature
-3. Realiza tus cambios
-4. Envía un pull request
+### Memory Issues
 
-## 📄 Licencia
+- Consider processing video segments of shorter durations.
+- Ensure adequate system memory resources are available.
+- Terminate other memory-intensive applications.
 
-Este proyecto está licenciado bajo la Licencia MIT - ver el archivo LICENSE para detalles.
+## Contribution
 
-## 🌟 Reconocimientos
+To contribute to this project:
 
-Este proyecto utiliza varias librerías y APIs de código abierto:
-- OpenAI Whisper y GPT
-- DeepSeek Audio y Chat
+1. Fork the repository.
+2. Create a new branch for your feature.
+3. Implement your changes.
+4. Submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. Refer to the LICENSE file for detailed information.
+
+## Acknowledgments
+
+This project incorporates various open-source libraries and APIs:
+
+- OpenAI Whisper and GPT
+- DeepSeek Audio and Chat
 - WebRTC VAD
 - MoviePy
 - pydub
